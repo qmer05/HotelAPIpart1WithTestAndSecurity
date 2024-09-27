@@ -1,0 +1,33 @@
+GET http://localhost:7000/hotels/
+
+###
+GET http://localhost:7000/hotels/
+Content-Type: application/json
+
+###
+POST http://localhost:7000/hotels/hotel/
+Content-Type: application/json
+
+{
+  "hotelName": "Test Hotel",
+  "hotelAddress": "Testevej 4"
+}
+
+###
+GET http://localhost:7000/hotels/hotel/9
+Content-Type: application/json
+
+###
+PUT http://localhost:7000/hotels/hotel/1
+Content-Type: application/json
+
+{
+  "dogName": "Dude",
+  "dogAge": 4,
+  "dogBreed": "GOLDEN_RETRIEVER",
+  "dogGender": "FEMALE"
+}
+
+###
+DELETE http://localhost:7000/hotels/hotel/8
+Content-Type: application/json
