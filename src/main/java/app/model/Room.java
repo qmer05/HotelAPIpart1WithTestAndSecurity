@@ -16,11 +16,7 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "room_id")
-    private long room_id;
-
-    @Column(name = "hotel_id", nullable = false)
-    private long hotel_id;
+    private long id;
 
     @Column(name = "room_number", nullable = false)
     private int roomNumber;
@@ -28,10 +24,9 @@ public class Room {
     @Column(name = "room_price", nullable = false)
     private int roomPrice;
 
-    public Room(int roomNumber, int roomPrice) {
-        this.roomNumber = roomNumber;
-        this.roomPrice = roomPrice;
-    }
+    @ManyToOne
+    @JoinColumn(name = "hotel_id", nullable = false)
+    private Hotel hotel;
 
     public Room(RoomDto roomDto) {
         this.roomNumber = roomDto.getRoomNumber();

@@ -9,8 +9,18 @@ POST http://localhost:7000/hotels/hotel/
 Content-Type: application/json
 
 {
-  "hotelName": "Test Hotel",
-  "hotelAddress": "Testevej 4"
+  "hotel_name": "Test Hotel",
+  "hotel_address": "Testevej 4",
+  "rooms": [
+    {
+      "room_number": 206,
+      "room_price": 1000
+    },
+    {
+      "room_number": 309,
+      "room_price": 2000
+    }
+  ]
 }
 
 ###

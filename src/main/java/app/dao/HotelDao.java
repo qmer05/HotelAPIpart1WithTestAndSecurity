@@ -28,8 +28,15 @@ public class HotelDao {
 
     public void createHotel(Hotel hotel) {
         try (var em = emf.createEntityManager()) {
+
             em.getTransaction().begin();
             em.persist(hotel);
+            if (hotel.getRooms() != null){
+                for (var room : hotel.getRooms()){
+                    room.setHotel(hotel);
+                    em.persist(room);
+                }
+            }
             em.getTransaction().commit();
         }
     }

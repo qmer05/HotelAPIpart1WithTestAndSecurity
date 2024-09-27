@@ -1,6 +1,7 @@
 package app.dto;
 
 import app.model.Hotel;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +11,9 @@ import java.util.List;
 @NoArgsConstructor
 public class HotelDto {
 
+    @JsonProperty("hotel_name")
     private String hotelName;
+    @JsonProperty("hotel_address")
     private String hotelAddress;
     private List<RoomDto> rooms;
 

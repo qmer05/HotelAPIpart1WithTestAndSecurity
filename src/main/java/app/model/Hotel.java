@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -18,8 +19,7 @@ public class Hotel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "hotel_id")
-    private long hotel_id;
+    private long id;
 
     @Column(name = "hotel_name", nullable = false)
     private String hotelName;
@@ -28,18 +28,19 @@ public class Hotel {
     private String hotelAddress;
 
     @Column(name = "hotel_rooms", nullable = false)
-    @OneToMany
-    private List<Room> rooms;
-
-    public Hotel(String hotelName, String hotelAddress, List<Room> rooms) {
-        this.hotelName = hotelName;
-        this.hotelAddress = hotelAddress;
-        this.rooms = rooms;
-    }
+    @OneToMany (mappedBy = "hotel")
+    private List<Room> rooms = new ArrayList<>();
 
     public Hotel(HotelDto hotelDto) {
         this.hotelName = hotelDto.getHotelName();
         this.hotelAddress = hotelDto.getHotelAddress();
         this.rooms = hotelDto.getRooms().stream().map(Room::new).toList();
+    }
+
+    public void addRoom(Room room) {
+        if (room != null) {
+            rooms.add(room);
+            room.setHotel(this);
+        }
     }
 }
