@@ -1,6 +1,7 @@
 package app.dao;
 
 import app.model.Hotel;
+import app.model.Room;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
@@ -31,8 +32,8 @@ public class HotelDao {
 
             em.getTransaction().begin();
             em.persist(hotel);
-            if (hotel.getRooms() != null){
-                for (var room : hotel.getRooms()){
+            if (hotel.getRooms() != null) {
+                for (var room : hotel.getRooms()) {
                     room.setHotel(hotel);
                     em.persist(room);
                 }
@@ -46,10 +47,20 @@ public class HotelDao {
             em.getTransaction().begin();
             hotel.setHotelName(updateHotel.getHotelName());
             hotel.setHotelAddress(updateHotel.getHotelAddress());
+
+            // Update rooms
+            if (updateHotel.getRooms() != null) {
+                for (var room : updateHotel.getRooms()) {
+                    room.setHotel(hotel);
+                    hotel.getRooms().add(room);
+                    em.persist(room);
+                }
+            }
             em.merge(hotel);
             em.getTransaction().commit();
         }
     }
+
 
     public void deleteHotel(long id) {
         try (var em = emf.createEntityManager()) {

@@ -9,35 +9,81 @@ POST http://localhost:7000/hotels/hotel/
 Content-Type: application/json
 
 {
-  "hotel_name": "Test Hotel",
-  "hotel_address": "Testevej 4",
+  "hotel_name": "Ocean Breeze Hotel",
+  "hotel_address": "Seaside Blvd 12",
   "rooms": [
     {
-      "room_number": 206,
-      "room_price": 1000
+      "room_number": 101,
+      "room_price": 1500
     },
     {
-      "room_number": 309,
-      "room_price": 2000
+      "room_number": 202,
+      "room_price": 2200
     }
   ]
 }
 
 ###
-GET http://localhost:7000/hotels/hotel/9
-Content-Type: application/json
-
-###
-PUT http://localhost:7000/hotels/hotel/1
+POST http://localhost:7000/hotels/hotel/
 Content-Type: application/json
 
 {
-  "dogName": "Dude",
-  "dogAge": 4,
-  "dogBreed": "GOLDEN_RETRIEVER",
-  "dogGender": "FEMALE"
+  "hotel_name": "City Central Inn",
+  "hotel_address": "Main Street 89",
+  "rooms": [
+    {
+      "room_number": 305,
+      "room_price": 1300
+    },
+    {
+      "room_number": 412,
+      "room_price": 1900
+    }
+  ]
 }
 
 ###
-DELETE http://localhost:7000/hotels/hotel/8
+POST http://localhost:7000/hotels/hotel/
+Content-Type: application/json
+
+{
+  "hotel_name": "Mountain View Lodge",
+  "hotel_address": "Alpine Road 37",
+  "rooms": [
+    {
+      "room_number": 105,
+      "room_price": 1800
+    },
+    {
+      "room_number": 207,
+      "room_price": 2500
+    }
+  ]
+}
+
+###
+GET http://localhost:7000/hotels/hotel/3
+Content-Type: application/json
+
+###
+PUT http://localhost:7000/hotels/hotel/4
+Content-Type: application/json
+
+{
+  "hotel_name": "Grand Bazar Hotel",
+  "hotel_address": "Silk Road 37",
+  "rooms": [
+    {
+      "room_number": 45,
+      "room_price": 5400
+    },
+    {
+      "room_number": 68,
+      "room_price": 6700
+    }
+  ]
+}
+
+###
+DELETE http://localhost:7000/hotels/hotel/2
 Content-Type: application/json

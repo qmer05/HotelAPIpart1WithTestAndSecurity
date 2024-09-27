@@ -2,6 +2,7 @@ package app.dto;
 
 import app.model.Hotel;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
+@JsonPropertyOrder({ "hotelName", "hotelAddress", "rooms" })
 public class HotelDto {
 
     @JsonProperty("hotel_name")
