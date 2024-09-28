@@ -62,7 +62,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:7000/hotels/hotel/2
+GET http://localhost:7000/hotels/hotel/3
 Content-Type: application/json
 
 ###
