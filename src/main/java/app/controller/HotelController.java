@@ -26,7 +26,7 @@ public class HotelController {
             long id = Long.parseLong(ctx.pathParam("id"));
 
             // == querying ==
-            Hotel hotel = hotelDao.getHotelById(id);
+            Hotel hotel = hotelDao.getById(id);
 
             // == response ==
             HotelDto hotelDto = new HotelDto(hotel);
@@ -41,7 +41,7 @@ public class HotelController {
     public void getAllHotels(Context ctx) {
         try {
             // == querying ==
-            List<Hotel> hotels = hotelDao.getAllHotels();
+            List<Hotel> hotels = hotelDao.getAll();
 
             // == response ==
             List<HotelDto> hotelDtos = HotelDto.toHotelDTOList(hotels);
@@ -60,7 +60,7 @@ public class HotelController {
 
             // == querying ==
             Hotel newHotel = new Hotel(hotelDto);
-            hotelDao.createHotel(newHotel);
+            hotelDao.create(newHotel);
 
             // == response ==
             ctx.res().setStatus(201);
@@ -77,8 +77,8 @@ public class HotelController {
             HotelDto hotelDto = ctx.bodyAsClass(HotelDto.class);
 
             // == querying ==
-            Hotel hotel = hotelDao.getHotelById(id);
-            hotelDao.updateHotel(hotel, new Hotel(hotelDto));
+            Hotel hotel = hotelDao.getById(id);
+            hotelDao.update(hotel, new Hotel(hotelDto));
 
             // == response ==
             ctx.res().setStatus(200);
@@ -93,10 +93,10 @@ public class HotelController {
         long id = Long.parseLong(ctx.pathParam("id"));
 
         // == querying ==
-        Hotel hotel = hotelDao.getHotelById(id);
+        Hotel hotel = hotelDao.getById(id);
 
         // == response ==
-        hotelDao.deleteHotel(id);
+        hotelDao.delete(id);
         ctx.res().setStatus(204);
     }
 }
