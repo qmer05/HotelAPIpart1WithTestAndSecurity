@@ -10,9 +10,10 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@JsonPropertyOrder({ "hotelName", "hotelAddress", "rooms" })
+@JsonPropertyOrder({ "id", "hotelName", "hotelAddress", "rooms" })
 public class HotelDto {
 
+    private Long id;
     @JsonProperty("hotel_name")
     private String hotelName;
     @JsonProperty("hotel_address")
@@ -20,6 +21,7 @@ public class HotelDto {
     private List<RoomDto> rooms;
 
     public HotelDto(Hotel hotel) {
+        this.id = hotel.getId();
         this.hotelName = hotel.getHotelName();
         this.hotelAddress = hotel.getHotelAddress();
         this.rooms = hotel.getRooms().stream().map(RoomDto::new).toList();

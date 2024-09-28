@@ -20,27 +20,37 @@ public class HotelController {
         this.hotelDao = hotelDao;
     }
 
-    public void getHotelById(Context ctx)  {
-        // == request ==
-        long id = Long.parseLong(ctx.pathParam("id"));
+    public void getHotelById(Context ctx) {
+        try {
+            // == request ==
+            long id = Long.parseLong(ctx.pathParam("id"));
 
-        // == querying ==
-        Hotel hotel = hotelDao.getHotelById(id);
+            // == querying ==
+            Hotel hotel = hotelDao.getHotelById(id);
 
-        // == response ==
-        HotelDto hotelDto = new HotelDto(hotel);
-        ctx.res().setStatus(200);
-        ctx.json(hotelDto, HotelDto.class);
+            // == response ==
+            HotelDto hotelDto = new HotelDto(hotel);
+            ctx.res().setStatus(200);
+            ctx.json(hotelDto, HotelDto.class);
+        } catch (Exception e) {
+            log.error("404 {}", e.getMessage());
+            throw new ApiException(404, e.getMessage());
+        }
     }
 
     public void getAllHotels(Context ctx) {
-        // == querying ==
-        List<Hotel> hotels = hotelDao.getAllHotels();
+        try {
+            // == querying ==
+            List<Hotel> hotels = hotelDao.getAllHotels();
 
-        // == response ==
-        List<HotelDto> hotelDtos = HotelDto.toHotelDTOList(hotels);
-        ctx.res().setStatus(200);
-        ctx.json(hotelDtos, HotelDto.class);
+            // == response ==
+            List<HotelDto> hotelDtos = HotelDto.toHotelDTOList(hotels);
+            ctx.res().setStatus(200);
+            ctx.json(hotelDtos, HotelDto.class);
+        } catch (Exception e) {
+            log.error("404 {}", e.getMessage());
+            throw new ApiException(404, e.getMessage());
+        }
     }
 
     public void createHotel(Context ctx) {
@@ -61,16 +71,21 @@ public class HotelController {
     }
 
     public void updateHotel(Context ctx) {
-        // == request ==
-        long id = Long.parseLong(ctx.pathParam("id"));
-        HotelDto hotelDto = ctx.bodyAsClass(HotelDto.class);
+        try {
+            // == request ==
+            long id = Long.parseLong(ctx.pathParam("id"));
+            HotelDto hotelDto = ctx.bodyAsClass(HotelDto.class);
 
-        // == querying ==
-        Hotel hotel = hotelDao.getHotelById(id);
-        hotelDao.updateHotel(hotel, new Hotel(hotelDto));
+            // == querying ==
+            Hotel hotel = hotelDao.getHotelById(id);
+            hotelDao.updateHotel(hotel, new Hotel(hotelDto));
 
-        // == response ==
-        ctx.res().setStatus(200);
+            // == response ==
+            ctx.res().setStatus(200);
+        } catch (Exception e) {
+            log.error("400 {}", e.getMessage());
+            throw new ApiException(400, e.getMessage());
+        }
     }
 
     public void deleteHotel(Context ctx) {

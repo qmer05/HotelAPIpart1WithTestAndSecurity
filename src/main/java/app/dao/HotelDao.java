@@ -1,7 +1,6 @@
 package app.dao;
 
 import app.model.Hotel;
-import app.model.Room;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;

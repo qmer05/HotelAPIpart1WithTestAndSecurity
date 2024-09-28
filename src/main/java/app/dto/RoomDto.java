@@ -11,12 +11,14 @@ import java.util.List;
 @NoArgsConstructor
 public class RoomDto {
 
+    private Long id;
     @JsonProperty("room_number")
     private int roomNumber;
     @JsonProperty("room_price")
     private int roomPrice;
 
     public RoomDto(Room room) {
+        this.id = room.getId();
         this.roomNumber = room.getRoomNumber();
         this.roomPrice = room.getRoomPrice();
     }
