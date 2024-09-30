@@ -1,6 +1,8 @@
 package app.dao;
 
 import app.model.Hotel;
+import app.model.Room;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
@@ -12,6 +14,14 @@ public class HotelDao extends DAO<Hotel> {
     public HotelDao(EntityManagerFactory emf) {
         this.emf = emf;
     }
+
+    // Add a method to the HotelDAO that returns all rooms for a specific hotel
+    public List<Room> getAllRooms() {
+        try (EntityManager em = emf.createEntityManager()) {
+            return em.createQuery("SELECT r FROM Room r", Room.class).getResultList();
+        }
+    }
+
 
     @Override
     public List<Hotel> getAll() {

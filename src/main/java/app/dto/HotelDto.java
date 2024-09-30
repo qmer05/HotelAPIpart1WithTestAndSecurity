@@ -10,7 +10,7 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@JsonPropertyOrder({ "id", "hotelName", "hotelAddress", "rooms" })
+@JsonPropertyOrder({"id", "hotelName", "hotelAddress", "rooms"})
 public class HotelDto {
 
     private Long id;

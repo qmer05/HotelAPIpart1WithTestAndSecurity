@@ -87,3 +87,7 @@ Content-Type: application/json
 ###
 DELETE http://localhost:7000/hotels/hotel/3
 Content-Type: application/json
+
+###
+GET http://localhost:7000/hotels/hotel/3/rooms/
+Content-Type: application/json

@@ -18,7 +18,7 @@ public class AppConfig {
     private static final Routes routes = new Routes();
     private static final ExceptionController exceptionController = new ExceptionController();
 
-    private static void configuration(JavalinConfig config){
+    private static void configuration(JavalinConfig config) {
         config.router.contextPath = ApiProps.API_CONTEXT;
 
         config.bundledPlugins.enableRouteOverview("/routes");
@@ -35,7 +35,7 @@ public class AppConfig {
     }
 
     // == exception ==
-    private static void exceptionContext(Javalin app){
+    private static void exceptionContext(Javalin app) {
         app.exception(ApiException.class, exceptionController::apiExceptionHandler);
     }
 
