@@ -1,6 +1,6 @@
 package app.errorhandling;
 
-import app.exception.ApiException;
+import app.exceptions.ApiException;
 import io.javalin.Javalin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

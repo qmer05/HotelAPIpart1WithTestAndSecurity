@@ -12,6 +12,9 @@ target/
 *.iml
 *.ipr
 
+# JWT Auth secret key - should not go on Github!!!
+config.properties
+
 ### Eclipse ###
 .apt_generated
 .classpath
