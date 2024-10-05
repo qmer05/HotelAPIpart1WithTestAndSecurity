@@ -1,7 +1,8 @@
+### Get all hotels
 GET http://localhost:7000/hotels/
 Content-Type: application/json
 
-###
+### Create a new hotel with rooms
 POST http://localhost:7000/hotels/hotel/
 Content-Type: application/json
 
@@ -20,7 +21,7 @@ Content-Type: application/json
   ]
 }
 
-###
+### Create a new hotel with rooms
 POST http://localhost:7000/hotels/hotel/
 Content-Type: application/json
 
@@ -39,7 +40,7 @@ Content-Type: application/json
   ]
 }
 
-###
+### Create a new hotel with rooms
 POST http://localhost:7000/hotels/hotel/
 Content-Type: application/json
 
@@ -58,12 +59,12 @@ Content-Type: application/json
   ]
 }
 
-###
+### Get a hotel by ID
 GET http://localhost:7000/hotels/hotel/3
 Content-Type: application/json
 
-###
-PUT http://localhost:7000/hotels/hotel/2
+### Update a hotel by ID
+PUT http://localhost:7000/hotels/hotel/5
 Content-Type: application/json
 
 {
@@ -81,10 +82,10 @@ Content-Type: application/json
   ]
 }
 
-###
+### Delete a hotel by id
 DELETE http://localhost:7000/hotels/hotel/3
 Content-Type: application/json
 
-###
+### Get all rooms for all hotels (not specified to a certain hotel even though the endpoint takes a hotel id)
 GET http://localhost:7000/hotels/hotel/3/rooms/
 Content-Type: application/json
