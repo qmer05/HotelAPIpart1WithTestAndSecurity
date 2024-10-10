@@ -8,6 +8,8 @@ import app.dtos.HotelDto;
 import app.dtos.RoomDto;
 import app.entities.Hotel;
 import app.entities.Room;
+import app.security.exceptions.ValidationException;
+import dk.bugelhartmann.UserDTO;
 import io.javalin.Javalin;
 import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.*;
@@ -32,6 +34,8 @@ class HotelRoutesTest {
     private Hotel h1, h2, h3;
     private List<Room> rooms;
     private Room r1, r2, r3, r4, r5, r6;
+
+    private UserDTO admin = new UserDTO("admin", "test123");
 
     @BeforeAll
     void init() {
@@ -64,6 +68,18 @@ class HotelRoutesTest {
     @AfterAll
     void closeDown() {
         ApplicationConfig.stopServer(app);
+    }
+
+    public String getAdminToken() {
+        return given()
+                .contentType("application/json")
+                .body(admin)
+                .when()
+                .post(BASE_URL + "/auth/login")
+                .then()
+                .statusCode(200)
+                .extract()
+                .path("token");
     }
 
     @Test
@@ -108,10 +124,12 @@ class HotelRoutesTest {
     }
 
     @Test
-    void testCreateHotel() {
+    void testCreateHotel() throws ValidationException {
+        String token = getAdminToken();
         HotelDto hotelDto = new HotelDto("Dracula Blood Bath", "Horror Avenue 999", List.of(new RoomDto(430, 4204), new RoomDto(587, 3450)));
         HotelDto createdHotel = given()
                 .contentType("application/json")
+                .header("Authorization", "Bearer " + token)
                 .body(hotelDto)
                 .when()
                 .post(BASE_URL + "/hotel")
